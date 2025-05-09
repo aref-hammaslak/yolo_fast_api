@@ -1,0 +1,6 @@
+model_path: "weights/yolo11m.onnx"
+iou_threshold: 0.1
+confidence_threshold: 0.99
+classes: ["person"]
+image_dir: "images"
+plots_dir: "plots"
