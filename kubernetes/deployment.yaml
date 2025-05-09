@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hd-api
+  labels:
+    app: hd-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hd-api
+  template:
+    metadata:
+      labels:
+        app: hd-api
+    spec:
+      containers:
+        - name: hd-api
+          image: arefhamm/hd-api:latest
+          ports:
+            - containerPort: 8000
