@@ -1,0 +1,12 @@
+services:
+  hd-api:
+    image: arefhamm/hd-api:latest
+    volumes:
+      - images:/code/images
+      - plots:/code/plots
+    container_name: hd-api
+    ports:
+      - "8000:8000"
+volumes:
+  images:
+  plots:
