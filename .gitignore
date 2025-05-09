@@ -1,0 +1,12 @@
+
+.dockerignore
+images/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pytype/
+.pyre/
+_pycache_/
+weights/
+plots/
