@@ -1,4 +1,5 @@
 import logging
+from typing import Union
 from src.config import config
 import cv2
 import numpy as np
@@ -47,7 +48,7 @@ def plot_and_save(image: np.ndarray, boxes: list[BoxXYXYCFormat], image_name: st
     image_path = plot_dir / f"{image_name}.jpg"
     cv2.imwrite(str(image_path), image)
     
-def convert_boxes_to_xyxyc(boxes: list[BoxYOLOFormat]) -> list[BoxXYXYCFormat]  :
+def convert_boxes_to_xyxyc(boxes: list[BoxYOLOFormat]) -> Union[BoxXYXYCFormat, list[BoxXYXYCFormat]]:
     """Convert (x, y, width, height) to (x1, y1, x2, y2)"""
     xyxyc_boxes = []
     for box in boxes:
