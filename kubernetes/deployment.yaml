@@ -5,7 +5,6 @@ metadata:
   labels:
     app: hd-api
 spec:
-  replicas: 4
   selector:
     matchLabels:
       app: hd-api
@@ -16,6 +15,30 @@ spec:
     spec:
       containers:
         - name: hd-api
-          image: arefhamm/hd-api:latest
+          image: hd-api:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 8000
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+          envFrom:
+            - configMapRef:
+                name: hd-config
+          volumeMounts:
+            - name: hd-secret-volume
+              mountPath: /etc/secret-volume
+              readOnly: true
+            - name: hd-image-local-path
+              mountPath: /code/images
+              readOnly: false
+      volumes:
+        - name: hd-secret-volume
+          secret:
+            secretName: hd-secret
+        - name: hd-image-local-path
+          hostPath:
+            path: /data/hd-images
+            type: DirectoryOrCreate
